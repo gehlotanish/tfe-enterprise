@@ -4,7 +4,6 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
-        exclude: "(?x)^(\n  [^/]+|\n  modules/.*\n)$\n"
       - id: terraform_docs
         args:
         - --hook-config=--add-to-existing-file=false

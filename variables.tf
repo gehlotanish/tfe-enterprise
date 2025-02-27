@@ -26,39 +26,24 @@ variable "project_name" {
   type        = string
 }
 
-variable "workspace_name" {
-  description = "Name of the Terraform Enterprise workspace"
-  type        = string
-}
-
-variable "vcs_repo_identifier" {
-  description = "VCS repository identifier (e.g., github-org/repo-name)"
-  type        = string
-}
-
-variable "vcs_branch" {
-  description = "Branch to track in the VCS repository"
-  type        = string
-  default     = "main"
-}
-
 variable "vcs_oauth_token_id" {
-  description = "Vcs GH oauth token id"
   type        = string
-  default     = "value"
+  description = "VSC github oauth token ID"
 }
 
-variable "execution_mode" {
-  description = "Execution mode of the workspace (e.g., remote, local, agent)"
-  type        = string
-  default     = "remote"
-}
-
-variable "workspace_variables" {
-  description = "workspace Variable"
+# Workspaces Configuration (Multiple Workspaces)
+variable "workspaces" {
+  description = "A map of workspace configurations"
   type = map(object({
-    value       = string
-    category    = string
-    description = string
+    name                = string
+    vcs_repo_identifier = string
+    vcs_branch          = string
+    execution_mode      = string
+    variables = optional(map(object({
+      key         = string
+      value       = string
+      category    = string # Ensure category is explicitly required
+      description = string
+    })), {})
   }))
 }

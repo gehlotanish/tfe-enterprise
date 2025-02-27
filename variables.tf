@@ -42,6 +42,12 @@ variable "vcs_branch" {
   default     = "main"
 }
 
+variable "vcs_github_app_installation_id" {
+  description = "Vcs GH app installation id"
+  type        = string
+  default     = "value"
+}
+
 variable "execution_mode" {
   description = "Execution mode of the workspace (e.g., remote, local, agent)"
   type        = string
@@ -55,4 +61,9 @@ variable "workspace_variables" {
     category    = string
     description = string
   }))
+}
+
+variable "ssh_key_name" {
+  type        = string
+  description = "The ID of an SSH key to assign to the workspace."
 }

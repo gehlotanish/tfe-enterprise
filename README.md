@@ -31,6 +31,9 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_organization_name"></a> [organization\_name](#output\_organization\_name) | The name of the organization |
 | <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the created project |
+| <a name="output_team_id"></a> [team\_id](#output\_team\_id) | The ID of the created team |
+| <a name="output_team_name"></a> [team\_name](#output\_team\_name) | The name of the created team |
 | <a name="output_workspaces"></a> [workspaces](#output\_workspaces) | List of workspaces created with their assigned team access |
 <!-- END_TF_DOCS -->

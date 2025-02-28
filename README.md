@@ -29,5 +29,8 @@ No modules.
 | <a name="input_workspaces"></a> [workspaces](#input\_workspaces) | A map of workspace configurations | <pre>map(object({<br>    name                = string<br>    vcs_repo_identifier = string<br>    vcs_branch          = string<br>    execution_mode      = string<br>    team_access         = string<br>    variables = optional(map(object({<br>      key         = string<br>      value       = string<br>      category    = string # Ensure category is explicitly required<br>      description = string<br>    })), {})<br>  }))</pre> | n/a | yes |  
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_project_id"></a> [project\_id](#output\_project\_id) | The ID of the created project |
+| <a name="output_workspaces"></a> [workspaces](#output\_workspaces) | List of workspaces created with their assigned team access |
 <!-- END_TF_DOCS -->

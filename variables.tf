@@ -11,14 +11,14 @@ variable "organization_name" {
   type        = string
 }
 
-variable "team_name" {
-  description = "Name of Team"
+variable "new_team_name" {
+  description = "The name of the team to be created"
   type        = string
 }
 
-variable "team_project_access" {
-  description = "Type of fixed access to grant. Valid values are admin, maintain, write, read, or custom"
-  type        = string
+variable "team_members" {
+  description = "List of email addresses of members to add to the team"
+  type        = list(string)
 }
 
 variable "project_name" {
@@ -39,6 +39,7 @@ variable "workspaces" {
     vcs_repo_identifier = string
     vcs_branch          = string
     execution_mode      = string
+    team_access         = string
     variables = optional(map(object({
       key         = string
       value       = string

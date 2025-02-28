@@ -8,10 +8,14 @@ resource "tfe_project" "project" {
   }
 }
 
-resource "tfe_team_project_access" "admin" {
-  access     = var.team_project_access
-  team_id    = data.tfe_team.team.id
-  project_id = tfe_project.project.id
+resource "tfe_team" "new_team" {
+  name         = var.new_team_name
+  organization = data.tfe_organization.org.name
+}
+
+resource "tfe_team_members" "team_members" {
+  team_id   = tfe_team.new_team.id
+  usernames = var.team_members # List of user emails
 }
 
 resource "tfe_workspace" "workspaces" {
@@ -25,6 +29,13 @@ resource "tfe_workspace" "workspaces" {
     branch         = each.value.vcs_branch
     oauth_token_id = var.vcs_oauth_token_id
   }
+}
+
+resource "tfe_team_access" "workspace_access" {
+  for_each     = var.workspaces
+  team_id      = tfe_team.new_team.id
+  workspace_id = tfe_workspace.workspaces[each.key].id
+  access       = each.value.team_access
 }
 
 resource "tfe_workspace_settings" "workspace_settings" {

@@ -37,6 +37,8 @@ No modules.
 | <a name="output_workspaces"></a> [workspaces](#output\_workspaces) | List of workspaces created with their assigned team access |
 <!-- END_TF_DOCS -->
 
+## Usage
+
 ```tfvars
 tfe_token          = "***"
 organization_name  = "anishgehlot"

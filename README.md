@@ -1,5 +1,4 @@
-# template-terraform
-Template repository for all terraform module repositories
+# terraform enterprise module
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -37,3 +36,52 @@ No modules.
 | <a name="output_team_name"></a> [team\_name](#output\_team\_name) | The name of the created team |
 | <a name="output_workspaces"></a> [workspaces](#output\_workspaces) | List of workspaces created with their assigned team access |
 <!-- END_TF_DOCS -->
+
+```tfvars
+tfe_token          = "***"
+organization_name  = "anishgehlot"
+project_name       = "admin-tfe"
+vcs_oauth_token_id = "ot-***"
+
+new_team_name = "admin-demo"
+team_members  = ["admin@gmail.com"]
+
+workspaces = {
+  "dev" = {
+    name                = "dev-workspace"
+    vcs_repo_identifier = "gehlotanish/terraform-keyvault-private"
+    vcs_branch          = "main"
+    execution_mode      = "remote"
+    team_access         = "write"
+    variables = {
+      ENV = {
+        key         = "ENV"
+        value       = "development"
+        category    = "env"
+        description = "Development environment variable"
+      }
+      DB_PASS = {
+        key         = "DB_PASS"
+        value       = "securepassword"
+        category    = "env"
+        description = "Database password"
+      }
+    }
+  },
+  "prod" = {
+    name                = "prod-workspace"
+    vcs_repo_identifier = "gehlotanish/terraform-keyvault-private"
+    vcs_branch          = "main"
+    execution_mode      = "remote"
+    team_access         = "write"
+    variables = {
+      ENV = {
+        key         = "ENV"
+        value       = "production"
+        category    = "env"
+        description = "Production environment variable"
+      }
+    }
+  }
+}
+```
